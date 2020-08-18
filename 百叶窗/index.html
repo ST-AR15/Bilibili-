@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>百叶窗</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 百叶窗的主体 -->
+        <div class="window">
+            <!-- 展开后的文字介绍 -->
+            <div class="introduce" id="introduce">
+                <div class="introduceText" id="introduceText">
+                    
+                </div>
+            </div>
+            <!-- 图片们 -->
+            <div class="imgs">
+                <!-- 每一个类名为img的div都是一张图片 -->
+                <div class="img" style="background-image: url(img/Kano.jpg);background-position-x: 20%;">
+                    <!-- 里面是这个图片的介绍文字 -->
+                    <span>Kano</span>
+                </div>
+                <div class="img" style="background-image: url(img/DeathAngel.jpg);background-position-x: 20%;">
+                    <span>Angel of Death</span>
+                </div>
+                <div class="img" style="background-image: url(img/Black.jpg);background-position-x: 30%;">
+                    <span>Darker than Black</span>
+                </div>
+                <div class="img" style="background-image: url(img/SakuraQuest.jpg);background-position-x: 50%;">
+                    <span>Sakura Quest</span>
+                </div>
+                <div class="img" style="background-image: url(img/AngelBeats.jpg);background-position-x: 90%;">
+                    <span>Angel Beats</span>
+                </div>
+                <div class="img" style="background-image: url(img/Gyokusha.png);background-position-x: 50%;">
+                    <span>Gyokusha</span>
+                </div>
+                <div class="img" style="background-image: url(img/Hana.jpg);background-position-x: 40%;">
+                    <span>Hana</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let imgs = document.getElementsByClassName('img');
+        let introduceText = [
+            "<p>\"这是花季的私密照片，你不能偷看哦！\"</p>",
+            "<p>少女沉默了一会，举起了镰刀。</p><br><p>\"你还想反抗吗,Ray？\"那个人双手叉腰，像是在看一条下贱的狗。</p><br><p>\"当然。\"</p><br><p>Ray没有犹豫，也没有感情地回答道：</p><br><p>\"因为能杀掉我的，只有Zake\"</p>",
+            "<p>\"BK-201又出现了！快！出动所有警力！逮捕BK-201！\"</p><br><p>伴随着一声指令，警局马上就紧张了起来。BK-201的外号可是\"黑之死神\"，完全不容易任何一个人有半点懈怠。</p><br><p>而此时，黑——也就是他们口中的BK-201，正在屋顶上跳跃。</p><br><p>\"这可是违背组织命令的决定。\"他肩膀上的猫说，\"你决定好了吗？\"</p><br><p>黑的脚步没有一丝迟缓。他的面具在月光的映射下闪闪发光。</p><br><p>\"契约者不会做梦。\"</p>",
+            "<p>\"喂！我们商业街的事情……\"</p><br><p>\"给我安静点！你个死老太婆！\"</p><br><p>山坡上，丑松拦住了千登势。</p><br><p>\"你个死老鬼！这件事关乎商业街的命运！你拦着我干什么！\"</p><br><p>\"我当然知道！\"丑松像往常一样极度傲慢地瞪了千登势一眼。</p><br><p>\"你就不能，等国王她们醒来吗？\"</p>",
+            "<p>这是你的心跳。你的心，和我。感谢你。我爱你。</p>",
+            "<p>归宅部活动记录 - X篇：大家在一起的地方，就是归宅部</p>",
+            "<p>花季的女孩们穿上了和服，一起参加祭典。</p>"
+        ];
+        let backPosition = [
+            20,20,30,50,90,50,40
+        ]
+        let introduce = document.getElementById('introduceText');
+        for(let i=0;i < imgs.length;i++) {
+            imgs[i].onclick = function() {
+                open(i);        
+            }
+        }
+        function open(n) {
+            if(getComputedStyle(imgs[n],null).flexShrink == 0) {
+                // 关闭
+                imgs[n].style.flexShrink = "1";
+                imgs[n].style.width = "";
+                imgs[n].style.backgroundPositionX = backPosition[n] + '%';
+                introduce.style.height = "0";
+            } else {
+                // 打开
+                imgs[n].style.flexShrink = "0";
+                imgs[n].style.width = "100%";
+                imgs[n].style.backgroundPositionX = "left";
+                introduce.innerHTML = introduceText[n];
+                introduce.style.height = "100%";
+            }
+            
+        }
+    </script>
+</body>
+</html>
